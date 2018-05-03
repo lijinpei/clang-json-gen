@@ -1,0 +1,30 @@
+// The following is the original license from spdlog's tweakme.h
+//
+// Copyright(c) 2015 Gabi Melman.
+// Distributed under the MIT License (http://opensource.org/licenses/MIT)
+//
+
+#pragma once
+
+#ifndef NDEBUG
+
+#define SPDLOG_NO_THREAD_ID
+#define SPDLOG_WCHAR_TO_UTF8_SUPPORT
+#define SPDLOG_ENABLE_MESSAGE_COUNTER
+#define SPDLOG_DEBUG_ON
+#define SPDLOG_TRACE_ON
+#include "spdlog/spdlog.h"
+
+#define SPDLOG_INFO(logger, ...) logger->info(__VA_ARGS__)
+#define SPDLOG_ERROR(logger, ...) logger->error(__VA_ARGS__)
+#define SPDLOG_WARN(logger, ...) logger->warn(__VA_ARGS__)
+
+#else // #ifndef NDEBUG
+
+#define SPDLOG_TRACE(logger, ...) (void)0
+#define SPDLOG_DEBUG(logger, ...) (void)0
+#define SPDLOG_INFO(logger, ...) (void)0
+#define SPDLOG_WARN(logger, ...) (void)0
+#define SPDLOG_ERROR(logger, ...) (void)0
+
+#endif // #ifndef NDEBUG
